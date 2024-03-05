@@ -3,58 +3,65 @@ use std::io::{self, Write};
 use std::path::Path;
 
 
-// enum
+// TODO #1: Create an enumeration structure for Male and Female
 enum Gender {
-    Male,
-    Female,
+   
+   // TODO #1
 }
 
-// enum's method
+// TODO #2: Implement a method for an enumeration that matches a string input to a specific gender
 impl Gender {
     fn from_str(input: &str) -> Option<Gender> {
         match input.to_lowercase().as_str() {
-            "m" | "male" => Some(Gender::Male),
-            "f" | "female" => Some(Gender::Female),
-            _ => None,
+
+            // TODO #2
+          
         }
     }
 }
 
 
-// struct for result 
+// TODO #3: Define the CalorieResults struct
 struct CalorieResults {
-    gender: Gender,
-    weight: f32,
-    height: f32,
-    age: f32,
-    activity_level: usize,
-    tdee: f32,
+   
 }
 
-// struct's method
+// TODO #4: Implementation of methods forCalorieResults struct
 impl CalorieResults {
+    // TODO #5 Create new instanse of the CalorieResults struct
     fn new(gender: Gender, weight: f32, height: f32, age: f32, activity_level: usize) -> Self {
         let mut result = CalorieResults {
-            gender,
-            weight,
-            height,
-            age,
-            activity_level,
-            tdee: 0.0,
+           
         };
         result.calculate_tdee();
         result
     }
 
+    // TODO #5: Create method for calculate bmr
     fn calculate_bmr(&self) -> f32 {
         match self.gender {
-            Gender::Male => 88.362 + (13.397 * self.weight) + (4.799 * self.height) - (5.677 * self.age),
-            Gender::Female => 447.593 + (9.247 * self.weight) + (3.098 * self.height) - (4.330 * self.age),
+            
         }
     }
+
+    // TODO #6: Create method for calculate tdee 
     fn calculate_tdee(&mut self) {
-        let activity_multipliers = [1.2, 1.375, 1.55, 1.725, 1.9];
-        self.tdee = self.calculate_bmr() * activity_multipliers[self.activity_level - 1];
+      
+    }
+}
+
+fn get_input(prompt: &str) -> f32 {
+    loop {
+        // Display the prompt to the user
+        println!("{}", prompt); 
+        let mut input = String::new();
+        // Read user input
+        std::io::stdin().read_line(&mut input).expect("Failed to read line"); 
+        match input.trim().parse::<f32>() {
+
+            // TODO #7: Create match arms for Ok(num) to capture valid numerical input 
+            // and Err(_) with a message "Invalid input for weight. Please enter a valid number."         
+        }
     }
 }
 
@@ -66,44 +73,32 @@ fn main() {
         let gender = loop {
             let input = input("Enter your gender (m/f): ");
             match Gender::from_str(&input) {
-                Some(gender) => break gender,
-                None => println!("Invalid gender. Please enter 'm' for male or 'f' for female."),
+
+            // TODO #8: Implement match arms to handle gender input.
+            // Use `Some(Gender::Male)` for 'm' or `Some(Gender::Female)` for 'f' to capture valid input.
+            // Use `None` to print an error message: "Invalid gender. Please enter 'm' for male or 'f' for female."
+
             }
         };
 
-        let weight = loop {
-            let input = input("Enter your weight in kg: ");
-            match input.trim().parse::<f32>() {
-                Ok(num) => break num,
-                Err(_) => println!("Invalid input for weight. Please enter a number."),
-            }
-        };
-
-        let height = loop {
-            let input = input("Enter your height in cm: ");
-            match input.trim().parse::<f32>() {
-                Ok(num) => break num,
-                Err(_) => println!("Invalid input for height. Please enter a number."),
-            }
-        };
-
-        let age = loop {
-            let input = input("Enter your age in years: ");
-            match input.trim().parse::<f32>() {
-                Ok(num) => break num,
-                Err(_) => println!("Invalid input for age. Please enter a number."),
-            }
-        };
+        let weight = get_input("Enter your weight in kg: ");
+        let height = get_input("Enter your height in cm: ");
+        let age = get_input("Enter your age in years: ");        
 
         let activity_level = loop {
             let input = input("Enter your activity level (1-5): ");
             match input.trim().parse::<usize>() {
-                Ok(num) if (1..=5).contains(&num) => break num,
-                _ => println!("Invalid activity level. Please enter a number between 1 and 5."),
+
+            // TODO #9: Implement match arms for parsing the activity level input.
+            // Ensure the parsed number (num) is within the 1-5 range. If so, break the loop and return the num.
+            // Otherwise, use the Err(_) arm or a condition on Ok(num) to print an error message: 
+            // "Invalid activity level. Please enter a number between 1 and 5."
+               
             }
         };
 
-        let results = CalorieResults::new(gender, weight, height, age, activity_level);
+
+       // TODO #10: Instantiate a new object of CalorieResults with the collected data.    
 
         print_calorie_results_to_console(&results);
 
@@ -114,7 +109,10 @@ fn main() {
         println!("Thank you for using the Calorie Calculator!");
 }
 
-fn input(prompt: &str) -> String {
+
+// Function to accept and return user input as a string.
+// It displays a prompt to the user, reads a line from standard input, trims it, and returns the result.
+fn input(prompt: &str) -> String {    
     let mut input = String::new();
     println!("{}", prompt);
     io::stdin().read_line(&mut input).expect("Failed to read line");
@@ -122,7 +120,8 @@ fn input(prompt: &str) -> String {
 }
 
 
-// function for print
+// Function to print the calorie results to the console.
+// It formats and displays the details of the CalorieResults struct, including gender, weight, height, age, activity level, and estimated daily calorie needs.
 fn print_calorie_results_to_console(results: &CalorieResults) {
     let border = "|--------------------------------------------------------|";
     let gender = format!("Gender: {}", match results.gender {
@@ -147,18 +146,3 @@ fn print_calorie_results_to_console(results: &CalorieResults) {
     println!("{}", border);
 }
 
-// ???
-fn save_results_to_file(results: &CalorieResults, file_path: &Path) -> io::Result<()> {
-    let mut file = File::create(file_path)?;
-    writeln!(file, "Calorie Consumption Details")?;
-    writeln!(file, "Gender: {}", match results.gender {
-        Gender::Male => "Male",
-        Gender::Female => "Female",
-    })?;
-    writeln!(file, "Weight: {}kg", results.weight)?;
-    writeln!(file, "Height: {}cm", results.height)?;
-    writeln!(file, "Age: {}years", results.age)?;
-    writeln!(file, "Activity Level: {}", results.activity_level)?;
-    writeln!(file, "Estimated Daily Calorie Needs: {}calories", results.tdee)?;
-    Ok(())
-}
