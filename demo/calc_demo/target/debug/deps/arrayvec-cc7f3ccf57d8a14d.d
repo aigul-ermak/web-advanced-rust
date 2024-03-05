@@ -1,0 +1,11 @@
+C:\src\webdev\team-project\ResearchProject_WMAD-S-B\Demo\calc_demo\target\debug\deps\libarrayvec-cc7f3ccf57d8a14d.rmeta: C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\lib.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\maybe_uninit_stable.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\array.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\array_string.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\char.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\range.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\errors.rs
+
+C:\src\webdev\team-project\ResearchProject_WMAD-S-B\Demo\calc_demo\target\debug\deps\arrayvec-cc7f3ccf57d8a14d.d: C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\lib.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\maybe_uninit_stable.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\array.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\array_string.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\char.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\range.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\errors.rs
+
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\lib.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\maybe_uninit_stable.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\array.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\array_string.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\char.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\range.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\arrayvec-0.4.12\src\errors.rs:

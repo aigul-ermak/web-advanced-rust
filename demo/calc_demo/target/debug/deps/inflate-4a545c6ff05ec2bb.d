@@ -1,0 +1,11 @@
+C:\src\webdev\team-project\ResearchProject_WMAD-S-B\Demo\calc_demo\target\debug\deps\libinflate-4a545c6ff05ec2bb.rmeta: C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\lib.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\checksum.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\writer.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\utils.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\reader.rs
+
+C:\src\webdev\team-project\ResearchProject_WMAD-S-B\Demo\calc_demo\target\debug\deps\libinflate-4a545c6ff05ec2bb.rlib: C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\lib.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\checksum.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\writer.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\utils.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\reader.rs
+
+C:\src\webdev\team-project\ResearchProject_WMAD-S-B\Demo\calc_demo\target\debug\deps\inflate-4a545c6ff05ec2bb.d: C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\lib.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\checksum.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\writer.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\utils.rs C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\reader.rs
+
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\lib.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\checksum.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\writer.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\utils.rs:
+C:\Users\aigul\.cargo\registry\src\index.crates.io-6f17d22bba15001f\inflate-0.3.4\src\reader.rs:
