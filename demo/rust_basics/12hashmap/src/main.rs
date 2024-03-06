@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 //ANCHOR - HashMap
 fn hash_map() {
   let mut contacts = HashMap::new();

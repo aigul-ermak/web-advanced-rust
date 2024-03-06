@@ -1,48 +1,178 @@
-## How to install
+# Rust + WebAssembly + Webpack
 
-```sh
-npm install
+The current example it to demostrate how use Rust to manipulate the DOM using WebAssembly and Webpack.
+
+## Prerequisites
+
+To start with this project you need to have the following tools installed:
+
+- [Rust](https://www.rust-lang.org/tools/install)
+- [Node.js](https://nodejs.org/en/download/)
+
+# Preparation
+
+## Web Assembly
+
+Once the tools are installed we gonna to use npm to install Web Assembly for the system with ***Admin privileges*** in powershell or cmd:
+
+``` npm install -g wasm-pack ```
+
+# Project Creation
+
+Navigate to the folder where you want to create the project and run the following commands:
+
+- Create a new project folder and navigate to it:
+
+``` mkdir <project-name> ```
+
+``` cd <project-name> ```
+
+- Initialize the project with npm:
+  
+  ``` npm init rust-webpack ```
+
+-Test that the project is working:
+
+``` npm run start ```
+
+# Updating Dependencies and Configuration
+
+Open the file **Cargo.toml** and update the following dependencies to the latest version:
+
+- edition = "2021"
+- wasm-bindgen = "0.2.91"
+- wee-alloc = "0.4.5"
+- [dependencies.web-sys]
+  version = "0.3.68"
+- console_error_panic_hook = "0.1.7"
+- wasm-bindgen-test = "0.3.30"
+- futures = "0.3.30"
+- js-sys = "0.3.68"
+- wasm-bindgen-futures = "0.4.41"
+
+Add the a new cargo package in the main [dependencies] section:
+
+- console_error_panic_hook = "0.1.7"
+
+Delete the following lines from the file **Cargo.toml**:
+
+```rust
+[target."cfg(debug_assertions)".dependencies]
+console_error_panic_hook = "0.1.7"
 ```
 
-## How to run in debug mode
+Add the following features to [dependencies.web-sys]:
 
-```sh
-# Builds the project and opens it in a new browser tab. Auto-reloads when the project changes.
-npm start
+```rust
+features = features = ["Window", "Document", "HtmlCanvasElement", "CanvasRenderingContext2d"]
 ```
 
-## How to build in release mode
+And in **src/lib.rs** in consequence delete the lines:
 
-```sh
-# Builds the project and places it into the `dist` folder.
-npm run build
+```rust
+// When the `wee_alloc` feature is enabled, this uses `wee_alloc` as the global
+// allocator.
+//
+// If you don't want to use `wee_alloc`, you can safely delete this.
+#[cfg(feature = "wee_alloc")]
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 ```
 
-## How to run unit tests
-
-```sh
-# Runs tests in Firefox
-npm test -- --firefox
-
-# Runs tests in Chrome
-npm test -- --chrome
-
-# Runs tests in Safari
-npm test -- --safari
+```rust
+    // This provides better error messages in debug mode.
+    // It's disabled in release mode so it doesn't bloat up the file size.
+    #[cfg(debug_assertions)]
 ```
 
-## What does each file do?
+and
 
-* `Cargo.toml` contains the standard Rust metadata. You put your Rust dependencies in here. You must change this file with your details (name, description, version, authors, categories)
+```rust
+use web_sys::console;
+```
 
-* `package.json` contains the standard npm metadata. You put your JavaScript dependencies in here. You must change this file with your details (author, name, version)
+Finally in **test/app.rs** only leave the following code:
 
-* `webpack.config.js` contains the Webpack configuration. You shouldn't need to change this, unless you have very special needs.
+```rust
+use wasm_bindgen_test::{wasm_bindgen_test_configure, wasm_bindgen_test};
 
-* The `js` folder contains your JavaScript code (`index.js` is used to hook everything into Webpack, you don't need to change it).
+wasm_bindgen_test_configure!(run_in_browser);
 
-* The `src` folder contains your Rust code.
 
-* The `static` folder contains any files that you want copied as-is into the final build. It contains an `index.html` file which loads the `index.js` file.
+// This runs a unit test in native Rust, so it can only use Rust APIs.
+#[test]
+fn rust_test() {
+    assert_eq!(1, 1);
+}
 
-* The `tests` folder contains your Rust unit tests.
+// This runs a unit test in the browser, so it can use browser APIs.
+#[wasm_bindgen_test]
+fn web_test() {
+    assert_eq!(1, 1);
+}
+```
+
+# Creating and Manipuling the Canvas
+
+Open the file **static/index.html** and add create the canvas and a javascript script to manipulate the DOM:
+
+-Body
+
+```javascript
+<canvas id="canvas" tabindex="0" height="600" width="600"></canvas>
+```
+
+-Script
+
+```javascript
+<script>
+  canvas = document.getElementById('canvas');
+  context = canvas.getContext('2d');
+
+  context.moveTo(300, 0);
+  context.beginPath();
+  context.lineTo(0, 600);
+  context.lineTo(600, 600);
+  context.lineTo(300, 0);
+  context.closePath();
+  context.stroke();
+  context.fill();
+</script> 
+```
+
+# Manipuling the DOM From Rust
+
+Comment the las script create to generate the triangle in the canvas and add the following code to the **src/lib.rs** file:
+
+-Add de library to cast the canvas to a web_sys::HtmlCanvasElement:
+
+```rust
+use wasm_bindgen::JsCast;
+```
+
+-Emulate the behavior of the script in the **static/index.html** file on rust remplacin the hello world in main function:
+
+```rust
+    let window = web_sys::window().unwrap();
+    let document = window.document().unwrap();
+    let canvas = document
+                .get_element_by_id("canvas")
+                .unwrap()
+                .dyn_into::<web_sys::HtmlCanvasElement>()
+                .unwrap();
+
+    let context = canvas
+                .get_context("2d")
+                .unwrap()
+                .unwrap()
+                .dyn_into::<web_sys::CanvasRenderingContext2d>()
+                .unwrap();
+
+    context.move_to(300.0, 0.0);
+    context.begin_path();
+    context.line_to(0.0, 600.0);
+    context.line_to(600.0, 600.0);
+    context.line_to(300.0, 0.0);
+    context.close_path();
+    context.stroke();
+```
