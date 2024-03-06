@@ -16,8 +16,11 @@ impl OrderSource {
     }
 }
 
+
+// TODO #1: Define the Displayable trait.
+// This trait should include a display method for implementing objects to provide a custom display functionality.
 trait Displayable {
-    fn display(&self);
+    //
 }
 
 
@@ -29,19 +32,17 @@ struct Order {
     count: u32,
 }
 
+
+// TODO #2: Implement the `display` method for the `Order` struct as part of the `Displayable` trait.
+// This method should neatly format and print the details of an order, including its name, year, source, item number, and count.
 impl Displayable for Order {
     fn display(&self) {
-        let source = match self.source {
-            OrderSource::Phone => "Phone",
-            OrderSource::Mobile => "Mobile",
-            OrderSource::Email => "Email",
-        };
-        println!(
-            "Order for {}, year: {}, made by: {}, item number: {}, count: {}",
-            self.name, self.year, source, self.item_number, self.count
-        );
+
+       
+
     }
 }
+
 
 struct Delivery {
     destination: String,
@@ -50,17 +51,13 @@ struct Delivery {
     weight: f32,
 }
 
+// TODO #3: Implement the `display` method for the `Delivery` struct within the `Displayable` trait.
+// This method should output a formatted string detailing the delivery's destination, day, source, and weight.
 impl Displayable for Delivery {
     fn display(&self) {
-        let source = match self.source {
-            OrderSource::Phone => "Phone",
-            OrderSource::Mobile => "Mobile",
-            OrderSource::Email => "Email",
-        };
-        println!(
-            "Delivery to {}, day: {}, arranged via: {}, weight: {}kg",
-            self.destination, self.day, source, self.weight
-        );
+        
+
+
     }
 }
 
