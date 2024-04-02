@@ -10,6 +10,4 @@ name = "chiphers"
 path = "src/lib.rs"
 
 [dependencies]
-rsa = "0.9.6"
-rand = "0.8.4"
-base64 = "0.21.7"
+
